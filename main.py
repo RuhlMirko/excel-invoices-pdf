@@ -11,9 +11,15 @@ for file in filepaths:
     pdf.add_page()
 
     filename = Path(file).stem.split('-')[0]
+    date = Path(file).stem.split('-')[1]
 
-    print(filename)
     pdf.set_font(family="Helvetica", size=16, style='B')
-    pdf.cell(w=50, h=8, text=f"Invoice nr.{filename}")
+    pdf.cell(w=50, h=8, text=f"Invoice nr.{filename}", new_x='LMARGIN', new_y='NEXT')
+
+    pdf.set_font(family="Helvetica", size=12, style='I')
+    pdf.cell(w=50, h=8, text=f"Date: {date}", new_x='LMARGIN', new_y='NEXT')
+
+
+
 
     pdf.output(f'PDFs/{filename}.pdf')
